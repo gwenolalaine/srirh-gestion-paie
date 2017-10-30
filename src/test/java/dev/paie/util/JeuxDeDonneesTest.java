@@ -30,7 +30,7 @@ public class JeuxDeDonneesTest {
 	}
 	
 	@Test
-		public void test_employe() {
+	public void test_employe() {
 		assertThat(bulletin1.getRemunerationEmploye().getMatricule()).isEqualTo("M01");
 	}
 	
