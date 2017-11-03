@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.junit.Test;
@@ -30,16 +31,16 @@ public class GradeServiceJdbcTemplateTest{
 		gradeService.sauvegarder(nouveauGrade);
 		
 		List<Grade> grades = gradeService.lister();
-		Grade oldGrade = grades.stream().filter(g->g.getCode().equals("MAS")).collect(Collectors.toList()).get(0);
+		Optional<Grade> oldGrade = grades.stream().filter(g->g.getCode().equals("MAS")).findFirst();
 		
-		oldGrade.setCode("Bop");
-		oldGrade.setNbHeuresBase(new BigDecimal(75));
-		gradeService.mettreAJour(oldGrade);
+		oldGrade.get().setCode("Bop");
+		oldGrade.get().setNbHeuresBase(new BigDecimal(75));
+		gradeService.mettreAJour(oldGrade.get());
 		
 		List<Grade> grades1 = gradeService.lister();
-		Grade newGrade = grades1.stream().filter(g->g.getCode().equals("Bop")).collect(Collectors.toList()).get(0);
+		Optional<Grade> newGrade = grades1.stream().filter(g->g.getCode().equals("Bop")).findFirst();
 		
 		// TODO vérifier que les modifications sont bien prises en compte via la méthode lister
-		assertThat(newGrade.getNbHeuresBase()).isEqualTo(new BigDecimal(75));
+		assertThat(newGrade.get().getNbHeuresBase()).isEqualTo(new BigDecimal(75));
 	}
 }
