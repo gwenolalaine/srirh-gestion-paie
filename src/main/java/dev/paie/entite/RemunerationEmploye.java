@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+@Entity
 @Table(name="remunerationEmploye")
 public class RemunerationEmploye {
 	@Id
@@ -14,11 +16,14 @@ public class RemunerationEmploye {
 	private Integer id;
 	@Column
 	private String matricule;
-	@Column
+	@ManyToOne
+	@JoinColumn(name="entrepriseID")
 	private Entreprise entreprise;
-	@Column
+	@ManyToOne
+	@JoinColumn(name="profilID")
 	private ProfilRemuneration profilRemuneration;
-	@Column
+	@ManyToOne
+	@JoinColumn(name="gradeID")
 	private Grade grade;
 	
 	public String getMatricule() {

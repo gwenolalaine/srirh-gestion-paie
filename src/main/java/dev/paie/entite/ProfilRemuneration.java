@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="profilRemuneration")
@@ -18,12 +19,14 @@ public class ProfilRemuneration {
 	private Integer id;
 	@Column
 	private String code;
-	@Column
-	@ManyToOne
+	@OneToMany
+	@JoinColumn(name="cotisationID")
 	private List<Cotisation> cotisationsNonImposables;
-	@Column
+	@OneToMany
+	@JoinColumn(name="cotisationID")
 	private List<Cotisation> cotisationsImposables;
-	@Column
+	@OneToMany
+	@JoinColumn(name="avantageID")
 	private List<Avantage> avantages;
 
 	public Integer getId() {
