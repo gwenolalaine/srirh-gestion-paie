@@ -27,6 +27,17 @@ public class Cotisation {
 	@Column
 	private BigDecimal tauxPatronal;
 	
+	public Cotisation() {}
+	
+	public Cotisation(String code, String libelle, BigDecimal tauxSalarial, BigDecimal tauxPatronal) {
+		super();
+		this.code = code;
+		this.libelle = libelle;
+		this.tauxSalarial = tauxSalarial;
+		this.tauxPatronal = tauxPatronal;
+	}
+
+
 	@Override
     public boolean equals(Object obj) {
         if (obj == null) {

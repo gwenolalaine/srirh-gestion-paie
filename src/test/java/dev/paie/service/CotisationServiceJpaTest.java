@@ -21,11 +21,8 @@ public class CotisationServiceJpaTest {
 	@Autowired private CotisationService cotisationService;
 	@Test
 	public void test_sauvegarder_lister_mettre_a_jour() {
-		Cotisation cotisation = new Cotisation();
-		cotisation.setCode("Cot");
-		cotisation.setLibelle("Cotisation");
-		cotisation.setTauxPatronal(new BigDecimal(14));
-		cotisation.setTauxSalarial(new BigDecimal(18));
+		Cotisation cotisation = new Cotisation("Cot", "Cotisation", new BigDecimal(14), new BigDecimal(18));
+		
 		cotisationService.sauvegarder(cotisation);
 		
 		List<Cotisation> cotisations = cotisationService.lister();
