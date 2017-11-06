@@ -8,8 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="profilRemuneration")
@@ -19,14 +19,30 @@ public class ProfilRemuneration {
 	private Integer id;
 	@Column
 	private String code;
-	@OneToMany
-	@JoinColumn(name="cotisationID")
+	@ManyToMany
+	@JoinTable(name="CotNI_Prof",
+		joinColumns=
+			@JoinColumn(name="id_Profil", referencedColumnName="id"),
+		inverseJoinColumns=
+			@JoinColumn(name="id_Cotisation", referencedColumnName="id")
+	)
 	private List<Cotisation> cotisationsNonImposables;
-	@OneToMany
-	@JoinColumn(name="cotisationID")
+	@ManyToMany
+	@JoinTable(name="CotI_Prof",
+		joinColumns=
+			@JoinColumn(name="id_Profil", referencedColumnName="id"),
+		inverseJoinColumns=
+			@JoinColumn(name="id_Cotisation", referencedColumnName="id")
+	)
 	private List<Cotisation> cotisationsImposables;
-	@OneToMany
-	@JoinColumn(name="avantageID")
+	@ManyToMany
+	@JoinTable(name="Avantage_Prof",
+		joinColumns=
+			@JoinColumn(name="id_Profil", referencedColumnName="id"),
+		inverseJoinColumns=
+			@JoinColumn(name="id_Avantage", referencedColumnName="id")
+	)
+	
 	private List<Avantage> avantages;
 
 	public Integer getId() {

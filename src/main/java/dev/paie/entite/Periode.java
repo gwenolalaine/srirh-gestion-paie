@@ -20,6 +20,11 @@ public class Periode {
 	@Column
 	private LocalDate dateFin;
 	
+	public Periode(LocalDate dateDebut, LocalDate dateFin) {
+		super();
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+	}
 	public LocalDate getDateDebut() {
 		return dateDebut;
 	}
@@ -38,9 +43,4 @@ public class Periode {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
-	
-	
-
 }
