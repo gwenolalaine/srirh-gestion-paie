@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>PAIE</title>
-	</head>
-	<body>
+<%@ include file="WEB-INF/views/header.jsp"%>
 		<h1>SIRH - Gestion de la paie</h1>
-	</body>
-</html>
+<%@ include file="WEB-INF/views/footer.jsp"%>

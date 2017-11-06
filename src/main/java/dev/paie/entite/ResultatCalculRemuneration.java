@@ -1,12 +1,30 @@
 package dev.paie.entite;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="resultatCalculRemuneration")
 public class ResultatCalculRemuneration {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	@Column
 	private String salaireDeBase;
+	@Column
 	private String salaireBrut;
+	@Column
 	private String totalRetenueSalarial;
+	@Column
 	private String totalCotisationsPatronales;
+	@Column
 	private String netImposable;
+	@Column
 	private String netAPayer;
 	/**
 	 * @return the salaireDeBase
