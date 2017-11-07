@@ -7,7 +7,7 @@
 <br />
 <br />
 
-<form class="form-horizontal col-sm-offset-1 col-sm-9  col-sm-offset-1" method="post" action="ajouter" id="ajout">
+<form class="form-horizontal col-sm-offset-1 col-sm-9  col-sm-offset-1" method="post" action="lister" id="ajout">
 	<div class="form-group">
 		<label class="col-sm-4" for="nom">Matricule :</label>
 		<div class="col-sm-8">
@@ -18,9 +18,9 @@
 	<div class="form-group">
 		<label class="col-sm-4" for="entreprise">Entreprise :</label>
 		<div class="col-sm-8">
-			<select class="form-control" name="departement">
+			<select class="form-control" name="entreprise" >
 				<c:forEach items="${requestScope.entreprises}" var="ent">
-					<option value="${ent.nom}"></option>
+					<option value="${ent.id}">${ent.denomination}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -28,9 +28,9 @@
 	<div class="form-group">
 		<label class="col-sm-4" for="profil">Profil :</label>
 		<div class="col-sm-8">
-			<select class="form-control" name="departement">
+			<select class="form-control" name="profil">
 				<c:forEach items="${requestScope.profils}" var="prof">
-					<option value="${prof.nom}">
+					<option value="${prof.id}">${prof.code}</option>
 						
 				</c:forEach>
 			</select>
@@ -41,7 +41,7 @@
 		<div class="col-sm-8">
 			<select class="form-control" name="grade">
 				<c:forEach items="${requestScope.grades}" var="grad">
-					<option value="${grad.nom}">${grad.nom}</option>
+					<option value="${grad.id}">${grad.code}</option>
 				</c:forEach>
 			</select>
 		</div>

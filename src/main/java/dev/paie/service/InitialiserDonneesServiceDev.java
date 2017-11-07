@@ -1,18 +1,15 @@
 package dev.paie.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.YearMonth;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import dev.paie.entite.Cotisation;
 import dev.paie.entite.Entreprise;
 import dev.paie.entite.Grade;
 import dev.paie.entite.Periode;
@@ -27,13 +24,14 @@ import dev.paie.repository.RemunerationEmployeRepository;
 
 @Service
 @ImportResource(value = { 
-	"classpath:cotisations-non-imposables.xml",
-	"classpath:entreprise.xml",
-	"classpath:grade.xml",
-	"classpath:profilRemuneration.xml",
-	"classpath:remunerationEmploye.xml",
-	"classpath:cotisations-imposables.xml"})
+	"classpath:entreprises.xml",
+	"classpath:grades.xml",
+	"classpath:profils-remuneration.xml",
+	"classpath:remunerationEmploye.xml"
+})
 public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
+	
+
 	@Autowired CotisationRepository cotisationRepository;
 	@Autowired EntrepriseRepository entrepriseRepository;
 	@Autowired GradeRepository gradeRepository;
@@ -41,28 +39,34 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 	@Autowired RemunerationEmployeRepository remunerationEmployeRepository;
 	@Autowired PeriodeRepository periodeRepository;
 	
-	@Autowired Entreprise entreprise;
-	@Autowired Grade grade;
-	@Autowired ProfilRemuneration profilRemuneration;
-	@Autowired RemunerationEmploye remunerationEmploye;
-	
-	@Autowired private ApplicationContext context;
+	@Autowired Entreprise entreprise1;
+	@Autowired Entreprise entreprise2;
+	@Autowired Entreprise entreprise3;
+	@Autowired Grade grade1;
+	@Autowired Grade grade2;
+	@Autowired Grade grade3;
+	@Autowired ProfilRemuneration profiltechnicien;
+	@Autowired ProfilRemuneration profilcadre;
+	@Autowired ProfilRemuneration profilstagiaire;
+	@Autowired RemunerationEmploye remuneration1;
+	@Autowired RemunerationEmploye remuneration2;
 	
 	@Override
+	@Transactional
 	public void initialiser() {
-		
-		Map<String, Cotisation> cotisations = context.getBeansOfType(Cotisation.class);
-		
-		Collection<Cotisation> cots = cotisations.values();
-		
-		for(Cotisation cot : cots) {
-			cotisationRepository.save(cot);
-		}
-		
-		entrepriseRepository.save(entreprise);
-		gradeRepository.save(grade);
-		profilRemunerationRepository.save(profilRemuneration);
-		remunerationEmployeRepository.save(remunerationEmploye);
+		entrepriseRepository.save(entreprise1);
+		entrepriseRepository.save(entreprise2);
+		entrepriseRepository.save(entreprise3);
+		gradeRepository.save(grade1);
+		gradeRepository.save(grade2);
+		gradeRepository.save(grade3);
+		profilRemunerationRepository.save(profiltechnicien);
+		profilRemunerationRepository.save(profilcadre);
+		profilRemunerationRepository.save(profilstagiaire);
+		remuneration1.setDateCreation(LocalDateTime.now());
+		remuneration2.setDateCreation(LocalDateTime.now());
+		remunerationEmployeRepository.save(remuneration1);
+		remunerationEmployeRepository.save(remuneration2);
 		periodeRepository.save(new Periode(LocalDate.of(2017, 01, 01), YearMonth.of(2017, 01).atEndOfMonth()));
 		periodeRepository.save(new Periode(LocalDate.of(2017, 02, 01), YearMonth.of(2017, 02).atEndOfMonth()));
 		periodeRepository.save(new Periode(LocalDate.of(2017, 03, 01), YearMonth.of(2017, 03).atEndOfMonth()));

@@ -2,8 +2,10 @@ package dev.paie.entite;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +21,7 @@ public class ProfilRemuneration {
 	private Integer id;
 	@Column
 	private String code;
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name="CotNI_Prof",
 		joinColumns=
 			@JoinColumn(name="id_Profil", referencedColumnName="id"),
@@ -27,7 +29,7 @@ public class ProfilRemuneration {
 			@JoinColumn(name="id_Cotisation", referencedColumnName="id")
 	)
 	private List<Cotisation> cotisationsNonImposables;
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name="CotI_Prof",
 		joinColumns=
 			@JoinColumn(name="id_Profil", referencedColumnName="id"),
@@ -35,14 +37,14 @@ public class ProfilRemuneration {
 			@JoinColumn(name="id_Cotisation", referencedColumnName="id")
 	)
 	private List<Cotisation> cotisationsImposables;
-	@ManyToMany
+	
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="Avantage_Prof",
 		joinColumns=
 			@JoinColumn(name="id_Profil", referencedColumnName="id"),
 		inverseJoinColumns=
 			@JoinColumn(name="id_Avantage", referencedColumnName="id")
 	)
-	
 	private List<Avantage> avantages;
 
 	public Integer getId() {

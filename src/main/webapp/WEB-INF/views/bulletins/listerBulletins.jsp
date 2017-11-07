@@ -2,14 +2,15 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 
 <%@ include file="../header.jsp"%>
-
+  
 <h1>Liste des bulletins</h1>
 <br />
 <br />
-
-<div class="offset-10 col-md-2">
-		<a class="btn btn-default" href="<c:url value="/mvc/bulletins/creer"/>">Ajouter</a>
+<div class="row">
+<div class="col-md-offset-11 col-md-1">
+		<a class="btn btn-primary" href="<c:url value="/mvc/bulletins/creer"/>">Ajouter</a>
 </div>
+
 <table class="table table-responsive table-striped table-bordered">
     <thead>
         <tr>
@@ -27,15 +28,16 @@
 	        <tr>
 	          	<td>${bulletin.dateCreation}</td>
 	          	<td>${bulletin.periode}</td>
-	          	<td>${bulletin.matricule}</td>
-	          	<td>${bulletin.salaireBrut}</td>
-	          	<td>${bulletin.netImposable}</td>
-	          	<td>${bulletin.netAPayer}</td>
-	          	<td>${bulletin.actionss}</td>
+	          	<td>${bulletin.remunerationEmploye.matricule}</td>
+	          	<td>${bulletin.resultat.salaireBrut}</td>
+	          	<td>${bulletin.resultat.netImposable}</td>
+	          	<td>${bulletin.resultat.netAPayer}</td>
+	          	<td><a href="<c:url value="/mvc/bulletins/visualiser/${bulletin.id}"/>">Visualiser</a></td>
 	        </tr>
         </c:forEach>
     </tbody>
 </table>
+</div>
 
 
 <%@ include file="../footer.jsp"%>

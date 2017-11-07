@@ -9,7 +9,7 @@
 	<import resource="classpath:cotisations-non-imposables.xml" />
 	
 	
-	<bean id="profil-technicien" class="dev.paie.entite.ProfilRemuneration">
+	<bean id="profiltechnicien" class="dev.paie.entite.ProfilRemuneration">
 		<property name="code" value="Technicien"></property>
 		<property name="cotisationsNonImposables">
 			<util:list value-type="dev.paie.entite.Cotisation">
@@ -31,7 +31,7 @@
 		
 	</bean>
 	
-	<bean id="profil-cadre" class="dev.paie.entite.ProfilRemuneration">
+	<bean id="profilcadre" class="dev.paie.entite.ProfilRemuneration">
 		<property name="code" value="Cadre"></property>
 		<property name="cotisationsNonImposables">
 			<util:list value-type="dev.paie.entite.Cotisation">
@@ -60,7 +60,7 @@
 		
 	</bean>
 	
-	<bean id="profil-stagiaire" class="dev.paie.entite.ProfilRemuneration">
+	<bean id="profilstagiaire" class="dev.paie.entite.ProfilRemuneration">
 		<property name="code" value="Stagiaire"></property>
 		<property name="cotisationsNonImposables">
 			<util:list value-type="dev.paie.entite.Cotisation">

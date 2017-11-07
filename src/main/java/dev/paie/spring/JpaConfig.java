@@ -30,15 +30,14 @@ public class JpaConfig {
 		vendorAdapter.setGenerateDdl(true);
 		// activer les logs SQL
 		vendorAdapter.setShowSql(true);
-		LocalContainerEntityManagerFactoryBean factory = new
-		LocalContainerEntityManagerFactoryBean();
+		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setJpaVendorAdapter(vendorAdapter);
 		// alternative au persistence.xml
 		factory.setPackagesToScan("dev.paie.entite");
 		factory.setDataSource(dataSource);
 		Properties jpaProperties = new Properties();
 
-		jpaProperties.setProperty("javax.persistence.schema-generation.database.action", "drop-and-create");
+		//jpaProperties.setProperty("javax.persistence.schema-generation.database.action", "drop-and-create");
 
 		factory.setJpaProperties(jpaProperties);
 		factory.afterPropertiesSet();

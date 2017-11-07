@@ -5,14 +5,14 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import dev.paie.service.InitialiserDonneesServiceDev;
+import dev.paie.service.InitialiserDonneesService;
 
 @Component
 public class StartListener {
-	@Autowired InitialiserDonneesServiceDev init;
+	@Autowired InitialiserDonneesService init;
 	
 	    @EventListener({ContextRefreshedEvent.class})
 	    void contextRefreshedEvent() {
-	        init.initialiser();
+	        //init.initialiser();
 	    }
 }

@@ -3,12 +3,13 @@
 
 <%@ include file="../header.jsp"%>
 
+<a href="<c:url value="/*"/>"><i class= "icon icon-arrow-left" aria-hidden="true" style="font-size:100px color:black"></i></a>
 <h1>Liste des employés</h1>
 <br />
 <br />
 
-<div class="col-md-offset-10 col-md-2">
-		<a class="btn btn-default" href="<c:url value="/mvc/employes/creer"/>">Ajouter</a>
+<div class="col-md-offset-11 col-md-1">
+		<a class="btn btn-primary" href="<c:url value="/mvc/employes/creer"/>">Ajouter</a>
 </div>
 
 <table class="table table-responsive table-striped table-bordered">
@@ -22,9 +23,9 @@
     <tbody>
        <c:forEach var="employe" items="${requestScope.employes}">
 	        <tr>
-	          	<td>${employe.dateCreation}</td>
-	          	<td>${employe.matricule}</td>
-	          	<td>${employe.grade}</td>
+	          	<td><c:if test="${!empty employe.dateCreation}">${employe.dateCreation}</c:if></td>
+	          	<td><c:if test="${!empty employe.matricule}">${employe.matricule}</c:if></td>
+	          	<td><c:if test="${!empty employe.grade}">${employe.grade.code}</c:if></td>
 	        </tr>
         </c:forEach>
     </tbody>

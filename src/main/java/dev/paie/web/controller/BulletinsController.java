@@ -1,19 +1,32 @@
 package dev.paie.web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.paie.entite.BulletinSalaire;
+import dev.paie.repository.BulletinSalaireRepository;
+import dev.paie.repository.PeriodeRepository;
+import dev.paie.repository.RemunerationEmployeRepository;
+
 @Controller
 @RequestMapping("/bulletins")
 public class BulletinsController {
-
+	@Autowired BulletinSalaireRepository bsr;
+	@Autowired PeriodeRepository pr;
+	@Autowired RemunerationEmployeRepository rer;
+	@Autowired BulletinService bulletinService;
+	
 	@RequestMapping(method = RequestMethod.GET, path = "/creer")
 	public ModelAndView creerBulletin() {
 		ModelAndView mv = new ModelAndView();
+	
 		mv.setViewName("bulletins/creerBulletin");
-		mv.addObject("prefixMatricule","M00");
+		mv.addObject("periodes", pr.findAll());
+		mv.addObject("employes", rer.findAll());
 		return mv;
 	}
 	
@@ -21,15 +34,29 @@ public class BulletinsController {
 	public ModelAndView listerBulletins() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("bulletins/listerBulletins");
-		mv.addObject("prefixMatricule","M00");
+		mv.addObject("bulletins", bsr.findAll());
 		return mv;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, path = "/visualiser")
-	public ModelAndView visualiserEmploye() {
+	@RequestMapping(method = RequestMethod.GET, path = "/visualiser/{id}")
+	public ModelAndView visualiserEmploye(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("bulletins/visualiserBulletins");
-		mv.addObject("prefixMatricule","M00");
+		BulletinSalaire bulletin = bsr.findOne(id);
+		mv.setViewName("bulletins/visualiserBulletin");
+		mv.addObject("bulletin",bulletin);
+		mv.addObject("cotisationsI",bulletin.getRemunerationEmploye().getProfilRemuneration().getCotisationsImposables());
+		mv.addObject("cotisationsNI",bulletin.getRemunerationEmploye().getProfilRemuneration().getCotisationsNonImposables());
+	
+		return mv;
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "/lister")
+	public ModelAndView submitForm(int periode, String matricule, String prime) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("bulletins/listerBulletins");
+		mv.addObject("bulletins", bsr.findAll());
+		
+		bulletinService.sauvegarderBulletin(periode, matricule, prime);
 		return mv;
 	}
 }
