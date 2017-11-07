@@ -24,9 +24,9 @@ public class Cotisation {
 	private String code;
 	@Column
 	private String libelle;
-	@Column
+	@Column (precision=19, scale=6)
 	private BigDecimal tauxSalarial;
-	@Column
+	@Column (precision=19, scale=6)
 	private BigDecimal tauxPatronal;
 	
 	public Cotisation() {}

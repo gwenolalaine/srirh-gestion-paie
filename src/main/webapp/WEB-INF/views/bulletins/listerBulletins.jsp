@@ -26,7 +26,7 @@
     <tbody>
        <c:forEach var="bulletin" items="${requestScope.bulletins}">
 	        <tr>
-	          	<td>${bulletin.dateCreation}</td>
+	          	<td>${bulletin.dateDeCreationFormat}</td>
 	          	<td>${bulletin.periode}</td>
 	          	<td>${bulletin.remunerationEmploye.matricule}</td>
 	          	<td>${bulletin.resultat.salaireBrut}</td>

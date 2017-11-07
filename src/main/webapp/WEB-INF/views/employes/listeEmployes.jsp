@@ -23,7 +23,7 @@
     <tbody>
        <c:forEach var="employe" items="${requestScope.employes}">
 	        <tr>
-	          	<td><c:if test="${!empty employe.dateCreation}">${employe.dateCreation}</c:if></td>
+	          	<td><c:if test="${!empty employe.dateCreation}">${employe.dateDeCreationFormat}</c:if></td>
 	          	<td><c:if test="${!empty employe.matricule}">${employe.matricule}</c:if></td>
 	          	<td><c:if test="${!empty employe.grade}">${employe.grade.code}</c:if></td>
 	        </tr>

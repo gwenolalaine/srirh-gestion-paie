@@ -2,6 +2,7 @@ package dev.paie.entite;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -80,6 +81,10 @@ public class BulletinSalaire {
 	public void setResultat(ResultatCalculRemuneration resultat) {
 		this.resultat = resultat;
 	}
+	
+	public String getDateDeCreationFormat(){
+        return this.dateCreation.format(DateTimeFormatter.ofPattern("HH:mm:ss dd:MM:yyyy"));
+    }
 	
 	
 	

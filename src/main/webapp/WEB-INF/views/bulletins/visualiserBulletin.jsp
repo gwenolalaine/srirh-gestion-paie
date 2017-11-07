@@ -3,6 +3,7 @@
 
 <%@ include file="../header.jsp" %>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <h1>Bulletin de salaire</h1>
@@ -95,9 +96,21 @@
 	       		<td>${cot.libelle}</td>
 	       		<td>${bulletin.resultat.salaireBrut}</td>
 	       		<td>${cot.tauxSalarial }</td>
-	       		<td>${cot.tauxSalarial * bulletin.resultat.salaireBrut}</td>
+	       		<td><c:if test="${cot.tauxSalarial!=0}">
+		       		<fmt:formatNumber
+						value="${cot.tauxSalarial*bulletin.resultat.salaireBrut}"
+						type="NUMBER" maxIntegerDigits="9" minIntegerDigits="1"
+						maxFractionDigits="2" minFractionDigits="2">
+					</fmt:formatNumber>
+				</c:if></td>
 	       		<td>${cot.tauxPatronal}</td>
-	       		<td>${cot.tauxPatronal * bulletin.resultat.salaireBrut}</td>
+	       		<td><c:if test="${cot.tauxPatronal!=0}">
+		       		<fmt:formatNumber
+						value="${cot.tauxPatronal*bulletin.resultat.salaireBrut}"
+						type="NUMBER" maxIntegerDigits="9" minIntegerDigits="1"
+						maxFractionDigits="2" minFractionDigits="2">
+					</fmt:formatNumber>
+				</c:if></td>
 	       </tr>
 	     </c:forEach>
 	    </tr>
@@ -123,9 +136,21 @@
 	       		<td>${cot.libelle}</td>
 	       		<td>${bulletin.resultat.salaireBrut}</td>
 	       		<td>${cot.tauxSalarial }</td>
-	       		<td>${cot.tauxSalarial * bulletin.resultat.salaireBrut}</td>
+	       		<td><c:if test="${cot.tauxSalarial!=0}">
+		       		<fmt:formatNumber
+						value="${cot.tauxSalarial*bulletin.resultat.salaireBrut}"
+						type="NUMBER" maxIntegerDigits="9" minIntegerDigits="1"
+						maxFractionDigits="2" minFractionDigits="2">
+					</fmt:formatNumber>
+				</c:if></td>
 	       		<td>${cot.tauxPatronal}</td>
-	       		<td>${cot.tauxPatronal * bulletin.resultat.salaireBrut}</td>
+	       		<td><c:if test="${cot.tauxPatronal!=0}">
+		       		<fmt:formatNumber
+						value="${cot.tauxPatronal*bulletin.resultat.salaireBrut}"
+						type="NUMBER" maxIntegerDigits="9" minIntegerDigits="1"
+						maxFractionDigits="2" minFractionDigits="2">
+					</fmt:formatNumber>
+				</c:if></td>
 	       </tr>
 	     </c:forEach>
     </tbody>
