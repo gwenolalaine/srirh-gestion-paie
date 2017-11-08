@@ -1,7 +1,10 @@
 package dev.paie.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +23,7 @@ public class BulletinsController {
 	@Autowired RemunerationEmployeRepository rer;
 	@Autowired BulletinService bulletinService;
 	
+	@Secured("ROLE_ADMINISTRATEUR")
 	@RequestMapping(method = RequestMethod.GET, path = "/creer")
 	public ModelAndView creerBulletin() {
 		ModelAndView mv = new ModelAndView();
@@ -30,6 +34,7 @@ public class BulletinsController {
 		return mv;
 	}
 	
+	@Secured({"ROLE_ADMINISTRATEUR", "ROLE_UTILISATEUR"})
 	@RequestMapping(method = RequestMethod.GET, path = "/lister")
 	public ModelAndView listerBulletins() {
 		ModelAndView mv = new ModelAndView();
@@ -38,7 +43,9 @@ public class BulletinsController {
 		return mv;
 	}
 	
+	@Secured({"ROLE_ADMINISTRATEUR", "ROLE_UTILISATEUR"})
 	@RequestMapping(method = RequestMethod.GET, path = "/visualiser/{id}")
+	@Transactional
 	public ModelAndView visualiserEmploye(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView();
 		BulletinSalaire bulletin = bsr.findOne(id);
@@ -50,6 +57,7 @@ public class BulletinsController {
 		return mv;
 	}
 	
+	@Secured("ROLE_ADMINISTRATEUR")
 	@RequestMapping(method = RequestMethod.POST, path = "/lister")
 	public ModelAndView submitForm(int periode, String matricule, String prime) {
 		ModelAndView mv = new ModelAndView();

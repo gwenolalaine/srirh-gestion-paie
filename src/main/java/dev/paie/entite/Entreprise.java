@@ -24,6 +24,17 @@ public class Entreprise {
 	@Column
 	private String codeNaf;
 	
+	public Entreprise() {
+
+	}
+	
+	public Entreprise(String siret, String denomination, String adresse, String urssaf, String codeNaf) {
+		this.siret = siret;
+		this.denomination = denomination;
+		this.adresse = adresse;
+		this.urssaf = urssaf;
+		this.codeNaf = codeNaf;
+	}
 	public String getDenomination() {
 		return denomination;
 	}

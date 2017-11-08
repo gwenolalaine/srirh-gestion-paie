@@ -28,7 +28,7 @@ public class BulletinService {
 	@Transactional(timeout=60)
 	public void sauvegarderBulletin(int periode, String matricule, String prime) {
 		BulletinSalaire bulletin = new BulletinSalaire();
-		bulletin.setPeriode(pr.findById(periode));
+		bulletin.setPeriode(pr.findOne(periode));
 		bulletin.setRemunerationEmploye(rer.findByMatricule(matricule));
 		bulletin.setPrimeExceptionnelle(new BigDecimal(prime));
 		bulletin.setDateCreation(LocalDateTime.now());

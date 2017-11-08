@@ -41,6 +41,6 @@ public void onStartup(ServletContext servletContext) throws ServletException {
 	
 	</listener>
 	*/
-	servletContext.addListener(new ContextLoaderListener(webContext));
+	//servletContext.addListener(new ContextLoaderListener(webContext));
 	}
 }

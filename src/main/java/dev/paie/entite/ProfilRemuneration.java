@@ -21,7 +21,7 @@ public class ProfilRemuneration {
 	private Integer id;
 	@Column
 	private String code;
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="CotNI_Prof",
 		joinColumns=
 			@JoinColumn(name="id_Profil", referencedColumnName="id"),
@@ -29,7 +29,7 @@ public class ProfilRemuneration {
 			@JoinColumn(name="id_Cotisation", referencedColumnName="id")
 	)
 	private List<Cotisation> cotisationsNonImposables;
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="CotI_Prof",
 		joinColumns=
 			@JoinColumn(name="id_Profil", referencedColumnName="id"),
@@ -46,6 +46,17 @@ public class ProfilRemuneration {
 			@JoinColumn(name="id_Avantage", referencedColumnName="id")
 	)
 	private List<Avantage> avantages;
+
+	public ProfilRemuneration() {
+
+	}
+
+	public ProfilRemuneration(String code, List<Cotisation> cotisationsNonImposables, List<Cotisation> cotisationsImposables, List<Avantage> avantages) {
+		this.code = code;
+		this.cotisationsNonImposables = cotisationsNonImposables;
+		this.cotisationsImposables = cotisationsImposables;
+		this.avantages = avantages;
+	}
 
 	public Integer getId() {
 		return id;

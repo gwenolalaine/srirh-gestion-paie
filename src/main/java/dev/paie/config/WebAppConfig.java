@@ -4,18 +4,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-@Configuration
-@EnableWebMvc
-@ComponentScan({"dev.paie.web.controller","dev.paie.listener"})
-@Import(ServicesConfig.class)
-public class WebAppConfig {
+import dev.paie.spring.JpaConfig;
 
-		@Bean
-		public ViewResolver viewResolver() {
-			return new InternalResourceViewResolver("/WEB-INF/views/", ".jsp");
-		}
+@Configuration
+@Import({ JpaConfig.class, SecurityConfig.class, ServicesConfig.class })
+@EnableJpaRepositories("dev.paie.repository")
+@ComponentScan({ "dev.paie.listener", "dev.paie.service", "dev.paie.util", "dev.paie.web.controller" })
+@EnableWebMvc
+public class WebAppConfig {
+	@Bean
+	public ViewResolver viewResolver() {
+		return new InternalResourceViewResolver("/WEB-INF/views/", ".jsp");
+	}
 }

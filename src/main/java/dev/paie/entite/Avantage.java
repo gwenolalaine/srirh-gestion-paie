@@ -25,7 +25,16 @@ public class Avantage {
 	@Column
 	private BigDecimal montant;
 	
+	public Avantage() {
+		
+	}
 	
+	public Avantage(String code, String nom, BigDecimal montant) {
+		this.code = code;
+		this.nom = nom;
+		this.montant = montant;
+	}
+
 	public String getCode() {
 		return code;
 	}

@@ -13,6 +13,6 @@ public class StartListener {
 	
 	    @EventListener({ContextRefreshedEvent.class})
 	    void contextRefreshedEvent() {
-	        //init.initialiser();
+	        init.initialiser();
 	    }
 }

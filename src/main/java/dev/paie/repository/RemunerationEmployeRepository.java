@@ -5,6 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import dev.paie.entite.RemunerationEmploye;
 
 public interface RemunerationEmployeRepository extends JpaRepository<RemunerationEmploye, Integer>{
-	public RemunerationEmploye findById(int id);
-	public RemunerationEmploye findByMatricule(String matricule);
+	RemunerationEmploye findByMatricule(String matricule);
 }
